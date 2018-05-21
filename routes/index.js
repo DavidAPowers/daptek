@@ -7,9 +7,10 @@ router.get('/blog/:slug', function(req, res, next) {
 });
 router.get('/:slug', function(req, res, next) {
 	let slug = req.params["slug"];
-  res.render('index', { title: 'Page', slug: slug, customJs: '' });
+	let view = `pages/${slug}`;
+  res.render(view, { title: 'Page', slug: slug, customJs: '' });
 });
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Hello', slug: '__home', customJs: '' });
+  res.render('pages/home', { title: 'Hello', slug: '__home', customJs: '' });
 });
 module.exports = router;
