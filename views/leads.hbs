@@ -1,0 +1,28 @@
+<h1>Leads</h1>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">Leads</div>
+
+            <div class="panel-body">
+                <table>
+                    <tr style="border: 1px solid #ccc">
+                        <td style="border: 1px solid #ccc"><b>Subject</b></td>
+                        <td style="border: 1px solid #ccc"><b>Name</b></td>
+                        <td style="border: 1px solid #ccc"><b>Email</b></td>
+                        <td style="border: 1px solid #ccc"><b>Message</b></td>
+                    </tr>
+                	{{#each leads}}
+                    <tr style="border: 1px solid #ccc">
+                        <td  style="border: 1px solid #ccc">{{this.subject}}</td>
+                        <td style="border: 1px solid #ccc">{{this.name}}</td>
+                        <td style="border: 1px solid #ccc">{{this.email}}</td>
+                        <td style="border: 1px solid #ccc">{{this.message}}</td>
+                    </tr>
+                	{{/each}}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
