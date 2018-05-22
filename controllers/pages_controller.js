@@ -1,13 +1,25 @@
+let NavlinksController = require("./navlinks_controller")
 class PagesController {
+	static renderPage(res, title, slug, view) {
+		let navlinks = NavlinksController.getAll();
+	  NavlinksController.getAll()
+	  .then(navlinks => {
+	    console.log('got em!');
+	    res.render(view, { title: 'Page', slug: slug, customJs: '', navlinks: navlinks });
+	  })
+	  .catch(e => {
+	    console.log("ERROR getting navlinks");
+	    console.log(e);
+	  });
+	}
+
 	static index(req, res, next) {
-		let nav = PagesController.nav();
-		res.render('pages/home', { title: 'David A. Powers', slug: '__home', customJs: '', nav: nav });
+		PagesController.renderPage(res, "David A. Powers", '__home', 'pages/home');
 	}
 	static show (req, res, next) {
 		let slug = req.params["slug"];
 		let view = `pages/${slug}`;
-		let nav = PagesController.nav();
-	  res.render(view, { title: 'Page', slug: slug, customJs: '', nav: nav });
+		PagesController.renderPage(res, "Welcome", slug, view);
 	}
 	static nav() {
 		return `

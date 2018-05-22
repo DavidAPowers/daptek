@@ -37,7 +37,11 @@
       </h1>
   </div>
   <div class="top-bar-right">
-{{{nav}}}   
+    <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
+      {{#each navlinks}}
+          <li><a href="{{ this.link }}">{{ this.title}}</a></li>
+      {{/each}}
+    </ul>
   </div>
 </header> 
 <section class="hero">
