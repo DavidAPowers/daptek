@@ -8,8 +8,10 @@ class NavlinksController {
 	static seedNavlinks() {
 	  let navlinks = [
 	    {title: "About", description: "About", link: "/about", priority: 1},
-	    {title: "Code", description: "Code", link: "/code", priority: 2},
-	    {title: "Portfolio", description: "Portfolio", link: "/portfolio", priority: 3},
+	    {title: "Skills", description: "Skills", link: "/skills", priority: 2},
+	    {title: "Clients", description: "Clients", link: "/clients", priority: 3},
+	    {title: "Projects", description: "Projects", link: "/projects", priority: 4},
+	    {title: "Playground", description: "Playground", link: "/playground", priority: 5},
 	    {title: "Contact", description: "Contact", link: "/contact", priority: 10}
 	  ];
 	  for(let i=0;i<navlinks.length;i++) {

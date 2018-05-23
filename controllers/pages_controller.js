@@ -1,11 +1,21 @@
-let NavlinksController = require("./navlinks_controller")
+const marked = require('marked');
+const fs = require('fs');
+const path = require('path');
+const NavlinksController = require("./navlinks_controller");
+
+
 class PagesController {
+	static getMdContent(slug) {
+		let content = fs.readFileSync(`content/${slug}.md`, 'utf-8');
+		return marked(content);
+	}
 	static renderPage(res, title, slug, view) {
-		let navlinks = NavlinksController.getAll();
 	  NavlinksController.getAll()
 	  .then(navlinks => {
 	    console.log('got em!');
-	    res.render(view, { title: 'Page', slug: slug, customJs: '', navlinks: navlinks });
+	    let content = PagesController.getMdContent(slug);
+	    let data = {title: 'Page', slug: slug, customJs: '', navlinks: navlinks, content: content}
+	    res.render(view, data);
 	  })
 	  .catch(e => {
 	    console.log("ERROR getting navlinks");
@@ -14,12 +24,23 @@ class PagesController {
 	}
 
 	static index(req, res, next) {
-		PagesController.renderPage(res, "David A. Powers", '__home', 'pages/home');
+		PagesController.renderPage(res, "David A. Powers", 'home', 'pages/home');
 	}
 	static show (req, res, next) {
+		//check if file exists
 		let slug = req.params["slug"];
-		let view = `pages/${slug}`;
-		PagesController.renderPage(res, "Welcome", slug, view);
+		const path = require('path');
+		let viewpath = path.resolve(__dirname,`../views/pages/${slug}.hbs`);
+		console.log(viewpath);
+	
+		if (!fs.existsSync(viewpath)) {
+			let view = `pages/404`;
+    	PagesController.renderPage(res, "404", slug, view);
+		} else {
+			let view = `pages/${slug}`;
+			PagesController.renderPage(res, "Welcome", slug, view);
+		}
+	
 	}
 	static nav() {
 		return `
