@@ -28,5 +28,3 @@ While working with Vets Prevail, I developed an advanced multimedia e-learning e
 
 * www.vetsprevail.org
 
-
-\*Note: Client list includes both direct clients and freelance agency work
