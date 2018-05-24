@@ -28,22 +28,5 @@ While working with Vets Prevail, I developed an advanced multimedia e-learning e
 
 * www.vetsprevail.org
 
-### Clients ###
-
-* Antietam
-* Blue Cross Blue Shield Assoc.
-* CPURX
-* Digital Bootcamp
-* Effen Vodka
-* First Nonprofit Insurance
-* Forum Coworking
-* Imagine Detroit
-* Jim Beam Global
-* Liquid Thread
-* Oi Furniture
-* PushMonetization.com
-* Sauza
-* Skinnygirl
-* Star Wars / Lego
 
 \*Note: Client list includes both direct clients and freelance agency work
