@@ -42,7 +42,7 @@ ul.icon-list h3 {
   margin: 20px 0;
 }
 
-ul.small-list li {
+ul.small-list li, .small-text {
   font-size: 1em;
 }
 h4 {
