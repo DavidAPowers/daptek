@@ -8,10 +8,3 @@ Around 2000, I began working with web-based languages and technologies, such as 
 
 Finally, in 2007, I went looking for a job as a full time web developer. And thus it was that my career as a software developer began.
 
-### Philosophy ###
-
-* Stay agile
-* Test first
-* Refactor mercilessly
-* Software is social
-* No silver bullets

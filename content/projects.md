@@ -10,13 +10,9 @@ Recording studio and record label management software. Includes scheduling, proj
 
 Moodflo is a web app designed especially for individuals suffering from mood disorders. It combines goal setting tools, scheduling tools, journaling tools, and the ability to track mood, awareness, concentration, and energy over time.
 
-#### Dimension Quest Campaign Generator ####
+#### MazeMaster Campaign Generator ####
 
 Tools for generating gonzo old school style tabletop RPG campaign settings. Perfect for judges running games like Metamorphosis Alpha, Dungeon Crawl Classics, or the original versions of Dungeons & Dragons.
-
-#### Caves & Corridors ####
-
-2D video game level designing tool.
 
 
 #### SuperSlick CMS (retired) ####

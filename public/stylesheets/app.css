@@ -22,22 +22,33 @@ body {
   margin-right: 6px;
 }
 
-h1, h3, h4 {
+h2, h3, h4 {
 	font-family: 'Oswald',sans-serif;	
 	letter-spacing: 2px;
 	font-weight: 300;
 
 }
+
+h2 {
+  font-size: 1.8em;
+}
+
 h3 {
+  font-size: 1.5em;
   margin: 20px 0 0 0;
   color: #426B69;
 }
 ul.icon-list h3 {
   margin: 20px 0;
 }
+
+ul.small-list li {
+  font-size: 1em;
+}
 h4 {
 	margin: 24px 0 15px;
 	font-weight: 400;
+  font-size: 1.2em;
 
 }
 
@@ -106,11 +117,6 @@ header a {
   font-weight: normal;
 }
 
-.top-bar-right {
-  position: relative;
-  top: 4px;
-}
-
 .title-bar {
   background: #333;
   padding: 0.9rem; 
@@ -124,7 +130,7 @@ header a {
     .top-bar ul li {
       background: #333; }
       .top-bar ul li a {
-        color: #fff; font-size: .8em;}
+        color: #fff; font-size: .9em;}
 
 .menu-text {
   color: #fff; }
@@ -163,7 +169,7 @@ h1.headline {
 }
 h1.headline a,  h1.headline a:visited {
 
-	color: #d0edb8;
+	color: #26f73c;
 }
 section.callout {
   background-color: #426B69;
