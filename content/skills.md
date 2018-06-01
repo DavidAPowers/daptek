@@ -1,5 +1,5 @@
 #### JavaScript ####
-ES6, Async, Service Workers, Push Messaging (FCM), Jasmine, Gulp, Vue, Ember, Angular, Node, jQuery, Bootstrap, MEAN.
+Node, Vue, Angular, React, ES6, Async/Promises, Service Workers, Push Messaging (FCM), Jasmine, Gulp, jQuery, Bootstrap, MEAN/MERN.
 
 #### Ruby #### 
 Ruby: Ruby on Rails 5, Sinatra, Rspec, Jasmine, Cucumber.
@@ -9,7 +9,7 @@ Laravel, Lumen, Codeception.
 
 #### DB / NoSql #### 
 
-MySql, PostgreSql, Redshift, Redis, MongoDb
+MySql, PostgreSql, Redshift, Redis, MongoDb.
 
 #### AWS #### 
 
@@ -18,7 +18,7 @@ Elastic Load-Balancing.
 
 #### Agile #### 
 
-BDD/TDD, OOP (SOLID), Continuous Integration, Pair Programming, Scrum
+BDD/TDD, OOP (SOLID), Continuous Integration, Pair Programming, Scrum.
 
 #### Other ####
 
