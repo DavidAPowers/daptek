@@ -1,74 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="" />
-    <title>David A. Powers</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="csrf-token" content="" />
+		<title>David A. Powers</title>
 
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+		<!-- Fonts -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Oswald|Dosis' rel='stylesheet' type='text/css'>
-    
-    <!-- Styles -->
-    <link href="/stylesheets/foundation-icons.css" rel="stylesheet">
-    <link href="/stylesheets/foundation.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/trumbowyg.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oswald|Dosis' rel='stylesheet' type='text/css'>
+		
+		<!-- Styles -->
+		<link href="/stylesheets/foundation-icons.css" rel="stylesheet">
+		<link href="/stylesheets/foundation.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/stylesheets/trumbowyg.min.css">
 
-    <link rel='stylesheet' href='/stylesheets/app.css' />
+		<link rel='stylesheet' href='/stylesheets/app.css' />
 
 </head>
 <body id="app-layout" class="{{slug}}">
 
 <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
-  <button class="menu-icon" type="button" data-toggle></button>
-  <div class="title-bar-title">Menu</div>
+	<button class="menu-icon" type="button" data-toggle></button>
+	<div class="title-bar-title">Menu</div>
 </div>
 
 <header class="top-bar" id="main-menu">
-  <div class="top-bar-left">
-    <h1 class="headline">
-        <a class="navbar-brand" href="/">
-          david a powers
-        </a>
-      </h1>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
-      {{#each navlinks}}
-          <li><a href="{{ this.link }}">{{ this.title}}</a></li>
-      {{/each}}
-    </ul>
-  </div>
+	<div class="top-bar-left">
+		<h1 class="headline">
+				<a class="navbar-brand" href="/">
+					david a powers
+				</a>
+			</h1>
+	</div>
+	<div class="top-bar-right">
+		<ul class="menu" data-responsive-menu="drilldown medium-dropdown">
+			{{#each navlinks}}
+					<li><a href="{{ this.link }}">{{ this.title}}</a></li>
+			{{/each}}
+		</ul>
+	</div>
 </header> 
 
 
-        <div class="container">
-            <div class="content">
+				<div class="container">
+						<div class="content">
 
-    {{{body}}}
+		{{{body}}}
 
-            <footer>
-                <div class="row">
+						<footer>
+								<div class="row">
 
-                    <div class="columns medium-12 ">
-                        <p>(c) 2018 David A. Powers</p>
-                                               
-                    </div>
-                </div>
-            </footer>
-            </div>
-        </div>
+										<div id="site-footer" class="columns medium-12 ">
+											<p v-if="logged_in"><a href="#">Logout</a></p>
+											<p v-else><a href="#">Login</a></p>
+											<p>(c) 2018 David A. Powers</p>                      
+										</div>
+								</div>
+						</footer>
+						</div>
+				</div>
 
-    <!-- JavaScripts -->
-    <script src="/javascripts/vendor/jquery.js"></script>
-    <script src="/javascripts/vendor/foundation.min.js"></script>
-    <script src="/javascripts/vendor/trumbowyg.min.js"></script>
-    <script src="/javascripts/app.js"></script>
-    {{customJs}}
+		<!-- JavaScripts -->
+		<script src="/javascripts/vendor/jquery.js"></script>
+		<script src="/javascripts/vendor/foundation.min.js"></script>
+		<script src="/javascripts/vendor/trumbowyg.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="/javascripts/app.js"></script>
+		{{customJs}}
+		<script>
+class FooterController {
+	constructor() {
+		this.vue = new Vue({
+			el: '#site-footer',
+			data: {
+				logged_in: false
+			}
+		});		
 
+	}
+	login() {
+		console.log('good luck, sir');
+		let url = '/users/login';
+		let data = {email: "cyborgk@gmail.com",  password: "monster"}
+		fetch(url, {
+			body: JSON.stringify(data), // must match 'Content-Type' header   
+			headers: {
+				'content-type': 'application/json'
+			},
+			method: 'POST'
+		})
+		.then((response) => {
+			return response.json();
+		})
+		.then((myJson) => {
+			console.log(myJson);
+			this.vue.logged_in = true;
+		});	
+	}
+}
+
+
+
+{
+	let fc = new FooterController();
+	//fc.login();
+}
+		</script>
 </body>
 </html>
