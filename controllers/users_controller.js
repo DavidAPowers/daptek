@@ -1,3 +1,6 @@
+const User = require("../models/user")
+const jwt = require('jsonwebtoken');
+
 class UsersController {
 	static register(req, res) {
 		if(!req.body.email || !req.body.password || !req.body.name) {
@@ -38,8 +41,11 @@ class UsersController {
 	      }			
 			})
 			.catch(err => {
+				console.log(err);
 				return res.status(500).send({msg: "Login failed, Server error authenticating user"});
 			});   
 	  }
 	}
 }
+
+module.exports = UsersController;

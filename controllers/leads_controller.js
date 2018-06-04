@@ -1,4 +1,4 @@
-let Lead = require("../models/lead")
+const Lead = require("../models/lead")
 
 class LeadsController {
 	static create(req, res, next) {
