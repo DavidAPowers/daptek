@@ -14,12 +14,16 @@
     "express": "~4.16.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
+    "jsonwebtoken": "^8.2.2",
     "marked": "^0.4.0",
     "mongoose": "^5.1.2",
-    "morgan": "~1.9.0",
-    "node-markdown": "^0.1.1"
+    "morgan": "^1.9.0",
+    "node-markdown": "^0.1.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "jasmine": "^3.1.0"
+    "jasmine": "^3.1.0",
+    "supertest": "^3.1.0"
   }
 }
