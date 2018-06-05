@@ -52,16 +52,5 @@ describe('User', () => {
     });    
   });    
 
-  describe('.generateJwt()', () => {
-    let user = new User({
-      name: 'Cyborg K',
-      email: 'cyborgk@gmail.com'
-    });
-    it('Given a password has been set, it returns json data', () => {
-      user.setPassword('dogfish');
-      let token = user.generateJwt();
-      expect(token.length).toEqual(233);       
-    });
-    
-  });    
+ 
 });

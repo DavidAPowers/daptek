@@ -2,6 +2,30 @@ const User = require("../models/user")
 const jwt = require('jsonwebtoken');
 
 class UsersController {
+	static auth(req, res) {
+		if(!req.body.token) {
+			return res.status(400).send({msg: "Token required"});
+		} else {
+			jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+			  if(!decoded) {
+					res.status(500).send({msg: err.message || "Server error."});
+			  } else {
+			  	console.log(decoded);
+			  	res.json({msg: `Welcome ${decoded.name}`});
+			  }
+			});	    
+	  }
+	}
+	static generateJwt(user) {
+		let expiry = new Date();
+		expiry.setDate(expiry.getDate() + 7);
+		return jwt.sign({
+			_id: user._id,
+			email: user.email,
+			name: user.name,
+			exp: parseInt(expiry.getTime() / 1000)
+		}, process.env.SECRET_KEY);
+	}
 	static register(req, res) {
 		if(!req.body.email || !req.body.password || !req.body.name) {
 			return res.status(400).send({
@@ -34,7 +58,7 @@ class UsersController {
 				}
 				//user found, now validate password
 	      if (user.validPassword(req.body.password)) {
-	        let token = jwt.sign(user.toJSON(), 'S3CR3T');
+	        let token = jwt.sign(user.toJSON(), '');
 	        res.json({success: true, token: 'JWT ' + token});
 	      } else {
 	        res.status(401).send({msg: 'Login failed.'});
