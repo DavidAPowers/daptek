@@ -74,13 +74,35 @@
 		<script>
 class FooterController {
 	constructor() {
+		this.init_vue();
 		this.token = localStorage.getItem('jwt_token');
 		if(this.token===null) {
 			this.login();
 		} else {
-			this.verify();
-			//this.init_vue();
+			this.verify();			
 		}
+	}
+	verify() {
+		let url = '/users/verify';
+		console.log(url);
+		fetch(url, {
+			body: JSON.stringify({token: this.token}), 
+			headers: {
+				'content-type': 'application/json'
+			},
+			method: 'POST'
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.then((token) => {
+				console.log(token);
+				this.vue.logged_in = true;
+			})
+			.catch((e) => {
+				console.log('error verifying token');
+				this.logout();
+			});
 	}
 	init_vue() {
 		this.vue = new Vue({
@@ -90,45 +112,31 @@ class FooterController {
 			}
 		});	
 	}
-	auth() {
-		console.log('good luck, sir');
-		let url = '/users/auth';
-		let data = {email: "cyborgk@gmail.com",  password: "monster"}
-		fetch(url, {
-			body: JSON.stringify(data), // must match 'Content-Type' header   
-			headers: {
-				'content-type': 'application/json'
-			},
-			method: 'POST'
-		})
-		.then((response) => {
-			return response.json();
-		})
-		.then((token) => {
-			console.log(token);
-			localStorage.setItem('jwt_token', token);
-			this.vue.logged_in = true;
-		});			
+	logout() {
+		localStorage.remove_item('jwt_token');
 	}
 	login() {
 		console.log('good luck, sir');
 		let url = '/users/login';
 		let data = {email: "cyborgk@gmail.com",  password: "monster"}
 		fetch(url, {
-			body: JSON.stringify(data), // must match 'Content-Type' header   
+			body: JSON.stringify(data),    
 			headers: {
 				'content-type': 'application/json'
 			},
 			method: 'POST'
 		})
-		.then((response) => {
-			return response.json();
-		})
-		.then((token) => {
-			console.log(token);
-			localStorage.setItem('jwt_token', token);
-			this.vue.logged_in = true;
-		});	
+			.then((response) => {
+				return response.json();
+			})
+			.then((json) => {
+				console.log(json.token);
+				localStorage.setItem('jwt_token', json.token);
+				this.vue.logged_in = true;
+			})
+			.catch((e) => {
+				console.log('error logging in')
+			});
 	}
 }
 

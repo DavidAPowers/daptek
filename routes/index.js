@@ -11,4 +11,13 @@ router.get('/blog/:slug', function(req, res, next) {
 });
 router.get('/:slug', PagesController.show);
 router.get('/', PagesController.index);
+
+router.use(function (err, req, res, next) {
+  if (err) {
+    console.log('Error', err);
+  } else {
+    console.log('404')
+  }
+});
+
 module.exports = router;

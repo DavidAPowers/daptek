@@ -1,17 +1,21 @@
+require('dotenv').config();
 const User = require("../models/user")
 const jwt = require('jsonwebtoken');
 
 class UsersController {
-	static auth(req, res) {
+	static verify(req, res) {
 		if(!req.body.token) {
 			return res.status(400).send({msg: "Token required"});
 		} else {
+			let token = req.body.token;
+			console.log("token!");
+			console.log(token);
 			jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
 			  if(!decoded) {
-					res.status(500).send({msg: err.message || "Server error."});
+					res.status(401).send({msg: err.message || "Server error."});
 			  } else {
 			  	console.log(decoded);
-			  	res.json({msg: `Welcome ${decoded.name}`});
+			  	res.send({msg: 'Verified!'});
 			  }
 			});	    
 	  }
@@ -58,8 +62,8 @@ class UsersController {
 				}
 				//user found, now validate password
 	      if (user.validPassword(req.body.password)) {
-	        let token = jwt.sign(user.toJSON(), '');
-	        res.json({success: true, token: 'JWT ' + token});
+	        let token = UsersController.generateJwt(user);
+	        res.json({success: true, token: token});
 	      } else {
 	        res.status(401).send({msg: 'Login failed.'});
 	      }			
