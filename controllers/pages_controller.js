@@ -6,16 +6,36 @@ const NavlinksController = require("./navlinks_controller");
 
 class PagesController {
 	static getMdContent(slug) {
-		let content = fs.readFileSync(`content/${slug}.md`, 'utf-8');
-		return marked(content);
+		let path = `content/${slug}.md`;
+		try {
+		  let content = fs.readFileSync(path, 'utf-8');
+		  return marked(content);
+		} catch (err) {
+			if (err.code === 'ENOENT') {
+			  console.log('Markdown file not found!');
+			  return false;
+			} else {
+			  throw err;
+			  return false;
+			}
+		}		
 	}
 	static renderPage(res, title, slug, view) {
 	  NavlinksController.getAll()
 	  .then(navlinks => {
 	    console.log('got em!');
 	    let content = PagesController.getMdContent(slug);
-	    let data = {title: 'Page', slug: slug, customJs: '', navlinks: navlinks, content: content}
-	    res.render(view, data);
+	    if(!content) {
+	    	PagesController.renderPage(res, "404", slug, `pages/404`);
+	    }
+	    let data;
+	    if(title==="404") {
+	    	data = {title: '404', slug: slug, customJs: '', navlinks: navlinks, content: content}
+	    	res.status(404).render(view, data);
+	    } else {
+	    	data = {title: 'Page', slug: slug, customJs: '', navlinks: navlinks, content: content}
+				res.render(view, data);
+	    }
 	  })
 	  .catch(e => {
 	    console.log("ERROR getting navlinks");
@@ -34,8 +54,7 @@ class PagesController {
 		console.log(viewpath);
 	
 		if (!fs.existsSync(viewpath)) {
-			let view = `pages/404`;
-    	PagesController.renderPage(res, "404", slug, view);
+    	PagesController.renderPage(res, "404", slug, `pages/404`);
 		} else {
 			let view = `pages/${slug}`;
 			PagesController.renderPage(res, "Welcome", slug, view);

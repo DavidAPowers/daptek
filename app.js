@@ -6,10 +6,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+let indexRouter = require('./routes/index');
+let dashboardRouter = require('./routes/dashboard');
+let usersRouter = require('./routes/users');
 
-var app = express();
+let app = express();
 let mongoUrl = process.env.MONGODB_URI;
 mongoose.connect(mongoUrl);
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

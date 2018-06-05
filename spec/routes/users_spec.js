@@ -39,7 +39,7 @@ describe('POST /users/register', function() {
 });
 
 describe('POST /users/login', function() {
-  it('respond with json', function(done) {
+  xit('respond with json', function(done) {
     request(app)
       .post('/users/login')
       .send({email: 'cyborgk@gmail.com', password: 'monster'})
