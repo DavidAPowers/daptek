@@ -20,20 +20,21 @@ class PagesController {
 			}
 		}		
 	}
-	static renderPage(res, title, slug, view) {
+	static renderPage(res, title, slug, view, extraData = {}) {
 	  NavlinksController.getAll()
 	  .then(navlinks => {
 	    console.log('got em!');
 	    let content = PagesController.getMdContent(slug);
-	    if(!content) {
-	    	PagesController.renderPage(res, "404", slug, `pages/404`);
-	    }
 	    let data;
-	    if(title==="404") {
-	    	data = {title: '404', slug: slug, customJs: '', navlinks: navlinks, content: content}
+	    if(title==="404" || !content) {
+	    	data = Object.assign(
+	    		{title: '404', slug: slug, customJs: '', navlinks: navlinks, content: content},
+	    		extraData);
 	    	res.status(404).render(view, data);
 	    } else {
-	    	data = {title: 'Page', slug: slug, customJs: '', navlinks: navlinks, content: content}
+	    	data = Object.assign(
+	    		{title: 'Page', slug: slug, customJs: '', navlinks: navlinks, content: content},
+	    		extraData);
 				res.render(view, data);
 	    }
 	  })

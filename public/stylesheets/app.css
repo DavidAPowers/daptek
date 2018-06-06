@@ -132,11 +132,15 @@ header a {
       .top-bar ul li a {
         color: #fff; font-size: .9em;}
 
+@media only screen and (max-width: 40em) {
+  .top-bar ul li {display: block;}
+}
+
 .menu-text {
   color: #fff; }
-  @media only screen and (max-width: 40em) {
-    .menu-text {
-      display: none !important; } }
+@media only screen and (max-width: 40em) {
+  .menu-text {
+    display: none !important; } }
 
 @media only screen and (min-width: 40em) {
   .menu:last-child {
@@ -147,17 +151,7 @@ header a {
 
   .menu li:not(:last-child) {
     border-right: 1px solid #4e4e4e; } }
-.dropdown.menu .submenu {
-  border: none; }
 
-.dropdown.menu .is-dropdown-submenu-parent.is-right-arrow > a::after {
-  border-color: #fff transparent transparent; }
-
-.is-drilldown-submenu-parent > a::after {
-  border-color: transparent transparent transparent #fff; }
-
-.js-drilldown-back::before {
-  border-color: transparent #fff transparent transparent; }
 h1.headline {
 	margin: 0 0 0 36px;
 	padding: 0;
@@ -169,7 +163,7 @@ h1.headline {
 }
 h1.headline a,  h1.headline a:visited {
 
-	color: #26f73c;
+	color: #bcddd9;
 }
 section.callout {
   background-color: #426B69;
@@ -274,28 +268,34 @@ footer p {
 	color: #aaa;
 }
 /* form */
-form {
+form.contact {
 	border-top: 1px solid #999;
 	padding: 12px 0;
+
 }
-label {
+form.contact label {
   color: #999;
   display: block;
 }
-input {
-  height: 24px;
+form.contact input {
+  height: 32px;
   font-size: 12px;
 }
 textarea.contact-form {
   height: 120px;
 }
-input.submit {
+form.contact input.submit {
   height: 40px;
   margin-top: 20px;
 }
-input.half {
+form.contact input.half {
   width: 50%;
-}
+}  
 textarea#content {
   height: 400px;
+}
+
+form#login input[type="text"] {
+  height: 34px;
+  font-size: 12px;
 }

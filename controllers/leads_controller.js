@@ -1,4 +1,5 @@
 const Lead = require("../models/lead")
+const PagesController = require("./pages_controller");
 
 class LeadsController {
 	static create(req, res, next) {
@@ -17,7 +18,7 @@ class LeadsController {
 		});
 		newLead.save()
 		.then(doc => {
-			res.render("thankyou", {lead:doc});
+			PagesController.renderPage(res, "David A. Powers", 'thankyou', 'thankyou', {lead:doc});
 		})
 		.catch(e => {
 			console.log("There was an error saving the new lead");

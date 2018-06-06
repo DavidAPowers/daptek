@@ -23,11 +23,6 @@
 </head>
 <body id="app-layout" class="{{slug}}">
 
-<div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
-	<button class="menu-icon" type="button" data-toggle></button>
-	<div class="title-bar-title">Menu</div>
-</div>
-
 <header class="top-bar" id="main-menu">
 	<div class="top-bar-left">
 		<h1 class="headline">
@@ -37,9 +32,9 @@
 			</h1>
 	</div>
 	<div class="top-bar-right">
-		<ul class="menu" data-responsive-menu="drilldown medium-dropdown">
+		<ul class="menu" data-responsive-menu="drilldown medium-shrink">
 			{{#each navlinks}}
-					<li><a href="{{ this.link }}">{{ this.title}}</a></li>
+					<li class=""><a href="{{ this.link }}">{{ this.title}}</a></li>
 			{{/each}}
 		</ul>
 	</div>
@@ -52,14 +47,9 @@
 		{{{body}}}
 
 						<footer>
-								<div class="row">
-
-										<div id="site-footer" class="columns medium-12 ">
-											<p v-if="logged_in"><a href="#">Logout</a></p>
-											<p v-else><a href="#">Login</a></p>
-											<p>(c) 2018 David A. Powers</p>                      
-										</div>
-								</div>
+							<div class="row">
+								<div id="site-footer" class="columns medium-12" />
+							</div>
 						</footer>
 						</div>
 				</div>
@@ -67,85 +57,8 @@
 		<!-- JavaScripts -->
 		<script src="/javascripts/vendor/jquery.js"></script>
 		<script src="/javascripts/vendor/foundation.min.js"></script>
-		<script src="/javascripts/vendor/trumbowyg.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="/javascripts/app.js"></script>
+		<script src="/javascripts/footer.js"></script>
 		{{customJs}}
-		<script>
-class FooterController {
-	constructor() {
-		this.init_vue();
-		this.token = localStorage.getItem('jwt_token');
-		if(this.token===null) {
-			this.login();
-		} else {
-			this.verify();			
-		}
-	}
-	verify() {
-		let url = '/users/verify';
-		console.log(url);
-		fetch(url, {
-			body: JSON.stringify({token: this.token}), 
-			headers: {
-				'content-type': 'application/json'
-			},
-			method: 'POST'
-		})
-			.then((response) => {
-				return response.json();
-			})
-			.then((token) => {
-				console.log(token);
-				this.vue.logged_in = true;
-			})
-			.catch((e) => {
-				console.log('error verifying token');
-				this.logout();
-			});
-	}
-	init_vue() {
-		this.vue = new Vue({
-			el: '#site-footer',
-			data: {
-				logged_in: false
-			}
-		});	
-	}
-	logout() {
-		localStorage.remove_item('jwt_token');
-	}
-	login() {
-		console.log('good luck, sir');
-		let url = '/users/login';
-		let data = {email: "cyborgk@gmail.com",  password: "monster"}
-		fetch(url, {
-			body: JSON.stringify(data),    
-			headers: {
-				'content-type': 'application/json'
-			},
-			method: 'POST'
-		})
-			.then((response) => {
-				return response.json();
-			})
-			.then((json) => {
-				console.log(json.token);
-				localStorage.setItem('jwt_token', json.token);
-				this.vue.logged_in = true;
-			})
-			.catch((e) => {
-				console.log('error logging in')
-			});
-	}
-}
-
-
-
-{
-	let fc = new FooterController();
-	//fc.login();
-}
-		</script>
+	
 </body>
 </html>
