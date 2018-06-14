@@ -7,6 +7,7 @@ let ArticleSchema = new Schema({
   content: {type: String, required: true },
   image_url: String,
   createdAt: {type: Date, default: Date.now}
+  updatedAt: {type: Date, default: Date.now}
 });
 
 let Article = mongoose.model('Article', ArticleSchema);
